@@ -13,8 +13,13 @@ export class UsersService {
 
   public create(createUserDto: CreateUserDto) {
     const user: User = this.usersRepository.create();
-    const { email } = createUserDto;
+    const { email, name, phone, password } = createUserDto;
+
     user.email = email;
+    user.name = name;
+    user.phone = phone;
+    user.password = password;
+
     this.usersRepository.save(user);
 
     return user;
@@ -40,5 +45,9 @@ export class UsersService {
     const deletedUser = this.usersRepository.delete(id);
 
     return deletedUser;
+  };
+
+  public findByEmail = async (email: string) => {
+    return await this.usersRepository.findOneOrFail({ email });
   };
 }
