@@ -21,7 +21,7 @@ export class UsersController {
     this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('/')
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
@@ -31,12 +31,12 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @Put(':id')
+  @Put('/update/:id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
+  @Delete('/delete/:id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
