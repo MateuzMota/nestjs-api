@@ -16,6 +16,8 @@ export class AuthService {
       const { id, name, email } = user;
       return { id, name, email };
     }
+
+    return null;
   }
 
   async login(user: any) {

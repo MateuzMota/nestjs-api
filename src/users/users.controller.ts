@@ -12,7 +12,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { LocalAuthGuard } from 'src/auth/shared/local-auth.guard';
+import { JwtAuthGuard } from 'src/auth/shared/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -23,25 +23,25 @@ export class UsersController {
     this.usersService.create(createUserDto);
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/')
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
     return this.usersService.findOne(+id);
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put('/update/:id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete('/delete/:id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
