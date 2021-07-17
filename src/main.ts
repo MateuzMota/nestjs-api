@@ -8,6 +8,14 @@ async function bootstrap() {
   const options = new DocumentBuilder()
     .setTitle('PegueLeve API Test')
     .setDescription('API Swagger Documentation')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'access_token',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
