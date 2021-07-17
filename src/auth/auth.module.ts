@@ -3,10 +3,11 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from 'src/users/users.module';
 import { AuthService } from './shared/auth.service';
 import { LocalStrategy } from './shared/local.strategy';
+import { JwtStrategy } from './shared/jwt.strategy';
 
 @Module({
   imports: [UsersModule],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
